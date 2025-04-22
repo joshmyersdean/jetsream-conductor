@@ -1,0 +1,20 @@
+# network configuration
+master_addr: 10.xx.xx.xx # private IP from your master node
+nnodes: 2 # we will use two instances
+nproc_per_node: 1 # number of GPUS
+
+# remote job configuration
+local_dir: ./ddp_test # the code we are transfering over
+remote_dir: ~/ddp-test # entry directory
+env_path: .venv/bin/activate # assumes this has all our dependencies, recommended to use uv, this is relative to remote_dir
+train_script: test.py # entry point for training
+ssh_user: ubuntu
+ssh_key: /path/to/key/for/your/instances # replace with your SSH key
+sync_code: true 
+
+# nodes participating in training
+nodes:
+  - public_ip: 149.xx.xx.xx
+    private_ip: 10.xx.xx.xx
+  - public_ip: 149.xx.xx.xx
+    private_ip: 10.xx.xx.xx
